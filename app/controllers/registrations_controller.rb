@@ -6,10 +6,10 @@ class RegistrationsController < ApplicationController
   end
 
   def create
-    @signup = Signup.new(signup_params)
-    if @signup.save
+    signup =  RegisterUser.new(Signup.new(signup_params)).execute
+    if signup
       flash[:notice] = t("registrations.user.success")
-      redirect_to user_path(@signup.user)
+      redirect_to user_path(signup.user)
     else
       redirect_to :root
     end
