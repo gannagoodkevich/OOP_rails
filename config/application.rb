@@ -2,18 +2,26 @@ require_relative 'boot'
 
 require 'rails/all'
 
-# Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
 module Untitled1
   class Application < Rails::Application
-    # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
 
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration can go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded after loading
-    # the framework and any gems in your application.
+    config.i18n.available_locales = [:en, :ru]
+    config.i18n.default_locale = :en
+
+    Warden::Manager.serialize_into_session do |user|
+      user.id
+    end
+
+    Warden::Manager.serialize_from_session do |id|
+      User.find_by_id(id)
+    end
+
+    Rails.application.config.middleware.use Warden::Manager do |manager|
+      manager.default_strategies :password
+      manager.failure_app = UnauthorizedController
+    end
   end
 end

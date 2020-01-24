@@ -1,3 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :users do
+    collection do
+      resource :registrations, only: %i[show create]
+      resource :sessions, only: %i[show create destroy]
+      resource :confirmations, only: [:show]
+    end
+  end
+  root 'users#root'
 end
