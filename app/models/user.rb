@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_one :card
   has_one :address
 
-  validates :email, presence: true
+  #validates :email, presence: true
 
   before_create :generate_confirmation_token
 

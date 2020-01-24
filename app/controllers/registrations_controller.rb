@@ -2,21 +2,23 @@ class RegistrationsController < ApplicationController
   skip_before_action :authenticate!
 
   def show
-    @user = User.new
+    @signup = Signup.new()
   end
 
   def create
-    user = User.create!(user_params)
-    user.create_card!(card_params)
-    user.create_address!
-    flash[:notice] = t("registrations.user.success")
-    redirect_to :root
+    @signup = Signup.new(signup_params)
+    if @signup.save
+      flash[:notice] = t("registrations.user.success")
+      redirect_to user_path(@signup.user)
+    else
+      redirect_to :root
+    end
   end
 
   private
 
-  def user_params
-    params.require(:user).permit(:email, :password)
+  def signup_params
+    params.require(:signup).permit!
   end
 
   def card_params
