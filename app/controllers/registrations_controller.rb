@@ -9,7 +9,7 @@ class RegistrationsController < ApplicationController
     signup =  RegisterUser.new(Signup.new(signup_params)).execute
     if signup
       flash[:notice] = t("registrations.user.success")
-      redirect_to user_path(signup.user)
+      redirect_to user_path(signup.user.id)
     else
       redirect_to :root
     end

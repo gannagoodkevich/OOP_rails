@@ -1,2 +1,14 @@
 <h1>Current user page</h1>
-<%= @user.inspect %>
+<% change = ChangeCurrency.new(@money) %>
+<p>
+  <%= change.change_currency('USD').to_s %>
+</p>
+<p>
+  <%= change.change_currency('EUR').to_s %>
+</p>
+<p>
+  <%= change.change_currency('RUB').to_s %>
+</p>
+<p>
+  <%= change.change_currency('BYN').to_s %>
+</p>
