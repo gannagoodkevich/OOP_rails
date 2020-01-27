@@ -66,9 +66,7 @@ class ChangeCurrency
   end
 
   def method_missing(method_name, *args, &block)
-    unless %w[rub_to_rub eur_to_eur usd_to_usd byn_to_byn].include?(method_name)
-      super
-    end
+    super unless %w[rub_to_rub eur_to_eur usd_to_usd byn_to_byn].include?(method_name)
   end
 
   def respond_to_missing?(method_name, *args)

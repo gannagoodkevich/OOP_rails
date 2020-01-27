@@ -8,34 +8,34 @@
         <div class="col-sm-12" style="background-color:#63c0de"></div>
       </div>
     </div>
-        <%= bootstrap_form_with(model: @signup, url: "/users/registrations", method: "post", local: true) do |f| %>
-        <div class="row">
-          <div class="col-sm-6">
-            <h2>General information</h2>
-            <div class="col-sm-5">
-              <%= f.email_field :email %>
-              <%= f.password_field :password %>
-              <h2>Address</h2>
-              <%= f.text_field :country %>
-              <%= f.text_field :city %>
-              <%= f.text_field :street %>
-              <%= f.text_field :house_number %>
-              <%= f.text_field :apartment_number %>
-            </div>
-          </div>
-          <div class="col-sm-2">
-            <h2>Card</h2>
-            <%= f.text_field :card_number %>
-            <%= f.text_field :name %>
-            <%= f.text_field :account_BYN %>
+    <%= bootstrap_form_with(model: @signup, url: "/users/registrations", method: "post", local: true) do |f| %>
+      <div class="row">
+        <div class="col-sm-6">
+          <h2>General information</h2>
+          <div class="col-sm-5">
+            <%= f.email_field :email %>
+            <%= f.password_field :password %>
+            <h2>Address</h2>
+            <%= f.text_field :country %>
+            <%= f.text_field :city %>
+            <%= f.text_field :street %>
+            <%= f.text_field :house_number %>
+            <%= f.text_field :apartment_number %>
           </div>
         </div>
+        <div class="col-sm-2">
+          <h2>Card</h2>
+          <%= f.text_field :card_number %>
+          <%= f.text_field :name %>
+          <%= f.text_field :account_BYN %>
+        </div>
+      </div>
       <div class="col-sm-4">
       </div>
       <div class="col-sm-6">
         <%= f.submit "Sign up", class: "btn btn-info" %>
       </div>
-        <% end %>
+    <% end %>
   </div>
   <div class="col-sm-2">
   </div>

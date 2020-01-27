@@ -2,7 +2,7 @@ class RegistrationsController < ApplicationController
   skip_before_action :authenticate!
 
   def show
-    @signup = Signup.new()
+    @signup = Signup.new
   end
 
   def create

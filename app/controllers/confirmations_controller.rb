@@ -7,7 +7,7 @@ class ConfirmationsController < ApplicationController
 
     if @user.nil?
       flash.alert = t("confirmations.user.errors")
-      redirect_to :root and return
+      redirect_to :root && return
     else
       flash.notice = t("confirmations.user.confirmed")
       @user.confirm!

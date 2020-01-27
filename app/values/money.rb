@@ -11,7 +11,7 @@ class Money
   end
 
   def ==(other)
-    self.class == other.class && self.amount == other.amount && self.currency == other.currency
+    self.class == other.class && @amount == other.amount && @currency == other.currency
   end
 
   def eql?(other)

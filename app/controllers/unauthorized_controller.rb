@@ -12,9 +12,7 @@ class UnauthorizedController < ActionController::Metal
   end
 
   def respond
-    unless request.get?
-      flash.alert = I18n.t("unauthorized.error")
-    end
+    flash.alert = I18n.t("unauthorized.error") unless request.get?
 
     redirect_to :root
   end
