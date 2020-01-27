@@ -5,108 +5,73 @@ class ChangeCurrency
 
   def initialize(money)
     @money = money
+    @amount = @money.amount.to_f
   end
 
   def change_currency(currency)
     send("#{@money.currency.downcase}_to_#{currency.downcase}")
+    @money.amount = @amount.round(2).to_s
+    @money.currency = currency
     @money
   end
 
   private
 
   def usd_to_byn
-    amount = @money.amount.to_f
-    amount *= USD_TO_BYN
-    @money.amount = amount.to_s
-    @money.currency = 'BYN'
+    @amount *= USD_TO_BYN
   end
 
   def eur_to_byn
-    amount = @money.amount.to_f
-    amount *= EUR_TO_BYN
-    @money.amount = amount.to_s
-    @money.currency = 'BYN'
+    @amount *= EUR_TO_BYN
   end
 
   def rub_to_byn
-    amount = @money.amount.to_f
-    amount *= RUB_TO_BYN
-    @money.amount = amount.to_s
-    @money.currency = 'BYN'
-  end
-
-  def byn_to_byn
-  end
-
-  def usd_to_usd
+    @amount *= RUB_TO_BYN
   end
 
   def eur_to_usd
-    amount = @money.amount.to_f
-    amount *= EUR_TO_BYN / USD_TO_BYN
-    @money.amount = amount.to_s
-    @money.currency = 'USD'
+    @amount *= EUR_TO_BYN / USD_TO_BYN
   end
 
   def rub_to_usd
-    amount = @money.amount.to_f
-    amount *= RUB_TO_BYN / USD_TO_BYN
-    @money.amount = amount.to_s
-    @money.currency = 'USD'
+    @amount *= RUB_TO_BYN / USD_TO_BYN
   end
 
   def byn_to_usd
-    amount = @money.amount.to_f
-    amount /= USD_TO_BYN
-    @money.amount = amount.to_s
-    @money.currency = 'USD'
+    @amount /= USD_TO_BYN
   end
 
   def usd_to_eur
-    amount = @money.amount.to_f
-    amount *= USD_TO_BYN / EUR_TO_BYN
-    @money.amount = amount.to_s
-    @money.currency = 'EUR'
-  end
-
-  def eur_to_eur
+    @amount *= USD_TO_BYN / EUR_TO_BYN
   end
 
   def rub_to_eur
-    amount = @money.amount.to_f
-    amount *= RUB_TO_BYN / EUR_TO_BYN
-    @money.amount = amount.to_s
-    @money.currency = 'EUR'
+    @amount *= RUB_TO_BYN / EUR_TO_BYN
   end
 
   def byn_to_eur
-    amount = @money.amount.to_f
-    amount /= EUR_TO_BYN
-    @money.amount = amount.to_s
-    @money.currency = 'EUR'
+    @amount /= EUR_TO_BYN
   end
 
   def usd_to_rub
-    amount = @money.amount.to_f
-    amount *= USD_TO_BYN / RUB_TO_BYN
-    @money.amount = amount.to_s
-    @money.currency = 'RUB'
+    @amount *= USD_TO_BYN / RUB_TO_BYN
   end
 
   def eur_to_rub
-    amount = @money.amount.to_f
-    amount *= EUR_TO_BYN / RUB_TO_BYN
-    @money.amount = amount.to_s
-    @money.currency = 'RUB'
-  end
-
-  def rub_to_rub
+    @amount *= EUR_TO_BYN / RUB_TO_BYN
   end
 
   def byn_to_rub
-    amount = @money.amount.to_f
-    amount /= RUB_TO_BYN
-    @money.amount = amount.to_s
-    @money.currency = 'RUB'
+    @amount /= RUB_TO_BYN
+  end
+
+  def method_missing(method_name, *args, &block)
+    unless %w[rub_to_rub eur_to_eur usd_to_usd byn_to_byn].include?(method_name)
+      super
+    end
+  end
+
+  def respond_to_missing?(method_name, *args)
+    %w[rub_to_rub eur_to_eur usd_to_usd byn_to_byn].include?(method_name) || super
   end
 end

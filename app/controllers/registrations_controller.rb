@@ -20,12 +20,4 @@ class RegistrationsController < ApplicationController
   def signup_params
     params.require(:signup).permit!
   end
-
-  def card_params
-    params.require(:user).permit(:card_number, :name, :account_BYN)
-  end
-
-  def address_params
-    params.require(:user).permit(:country, :city, :street, :house_number, :apartment_number)
-  end
 end

@@ -3,6 +3,7 @@ class UsersController < ApplicationController
 
   def show
     user = User.find_by(id: params[:id])
-    @money = Money.new(amount: user.card.account_BYN, currency: 'BYN')
+    money = Money.new(amount: user.card.account_BYN, currency: 'BYN')
+    @change_currency = ChangeCurrency.new(money)
   end
 end

@@ -1,14 +1,13 @@
-<h1>Current user page</h1>
-<% change = ChangeCurrency.new(@money) %>
+<h1>Users bank account</h1>
 <p>
-  <%= change.change_currency('USD').to_s %>
+  <%= @change_currency.change_currency('USD').to_s %>
 </p>
 <p>
-  <%= change.change_currency('EUR').to_s %>
+  <%= @change_currency.change_currency('EUR').to_s %>
 </p>
 <p>
-  <%= change.change_currency('RUB').to_s %>
+  <%= @change_currency.change_currency('RUB').to_s %>
 </p>
 <p>
-  <%= change.change_currency('BYN').to_s %>
+  <%= @change_currency.change_currency('BYN').to_s %>
 </p>
