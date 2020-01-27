@@ -6,8 +6,6 @@ class User < ApplicationRecord
   has_one :card
   has_one :address
 
-  #validates :email, presence: true
-
   before_create :generate_confirmation_token
 
   def password
@@ -17,12 +15,6 @@ class User < ApplicationRecord
   def password=(new_password)
     @password = Password.create(new_password)
     self.encrypted_password = @password
-  end
-
-  def confirm!
-    self.confirmation_token = nil
-    self.confirmed_at = Time.now.utc
-    save!
   end
 
   private

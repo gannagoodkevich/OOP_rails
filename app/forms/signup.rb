@@ -44,5 +44,4 @@ class Signup
     @address = @user.create_address!(country: country, city: city, street: street, house_number: house_number, apartment_number: apartment_number)
     @card = @user.create_card!(card_number: card_number, name: name, account_BYN: account_BYN)
   end
-
 end
