@@ -17,6 +17,12 @@ class User < ApplicationRecord
     self.encrypted_password = @password
   end
 
+  def confirm!
+    self.confirmation_token = nil
+    self.confirmed_at = Time.now.utc
+    save!
+  end
+
   private
 
   def generate_confirmation_token
