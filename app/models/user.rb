@@ -9,7 +9,7 @@ class User < ApplicationRecord
   before_create :generate_confirmation_token
 
   def password
-    @password ||= Password.new(self.encrypted_password)
+    @password ||= Password.new(encrypted_password)
   end
 
   def password=(new_password)
@@ -28,11 +28,11 @@ class User < ApplicationRecord
   def generate_confirmation_token
     loop do
       token = SecureRandom.urlsafe_base64
-      unless User.where(confirmation_token: token).any?
-        self.confirmation_token = token
-        self.confirmation_sent_at = Time.now.utc
-        break
-      end
+      next if User.where(confirmation_token: token).any?
+
+      self.confirmation_token = token
+      self.confirmation_sent_at = Time.now.utc
+      break
     end
   end
 end

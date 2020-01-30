@@ -1,7 +1,7 @@
 class Money
   attr_accessor :amount, :currency
 
-  def initialize(amount: amount, currency: currency)
+  def initialize(amount:, currency:)
     @amount = amount
     @currency = currency
   end
@@ -15,7 +15,7 @@ class Money
   end
 
   def eql?(other)
-    self.to_s == other.to_s
+    to_s == other.to_s
   end
 
   def to_s
