@@ -15,6 +15,7 @@ gem 'bootswatch-rails'
 gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'rails-i18n'
+gem 'rubocop', '~> 0.79.0', require: false
 
 group :development, :test do
   gem 'rspec'
