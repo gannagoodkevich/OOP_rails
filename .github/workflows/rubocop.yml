@@ -15,5 +15,7 @@ jobs:
           ruby-version: 2.6.5
       - name: Rubocop Linter
         uses: andrewmcodes/rubocop-linter-action@v0.1.2
+        with:
+          ruby-version: 2.6.5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
