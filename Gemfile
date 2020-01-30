@@ -16,6 +16,11 @@ gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'rails-i18n'
 gem 'rubocop', '~> 0.79.0', require: false
+gem 'rubocop-rspec', require: false
+gem 'rubocop-performance', require: false
+gem 'rubocop-rails', require: false
+gem 'rubocop-minitest', require: false
+
 
 group :development, :test do
   gem 'rspec'
