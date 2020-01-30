@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Rubocop Linter
         uses: actions/checkout@v1
-          with:
-            repository: gannagoodkevich/OOP_rails
+        with:
+          repository: gannagoodkevich/OOP_rails
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
