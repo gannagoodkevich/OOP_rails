@@ -8,13 +8,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
-      - name: Set up Ruby 2.6
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.6.5
       - name: Rubocop Linter
-        uses: gannagoodkevich/OOP_rails@v1
+        uses: gannagoodkevich/OOP_rails
         with:
           ruby-version: 2.6.5
         env:
