@@ -1,5 +1,4 @@
 class RegisterUserService
-
   def initialize(user_form)
     @user_form = user_form
     @admin = User.first
@@ -7,6 +6,7 @@ class RegisterUserService
 
   def call
     return nil unless @user_form.save
+
     generate_confirmation_token
 
     UserMailer.with(user: @user_form.user).welcome_email.deliver_now
