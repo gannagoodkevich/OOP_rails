@@ -3,16 +3,15 @@ class ConfirmationsController < ApplicationController
   before_action :redirect_if_token_empty!
 
   def show
-    @user = User.where(confirmation_token: params[:token]).first
+    @confirmation_result = ConfirmationUserService.new(params[:token]).call
 
-    if @user.nil?
+    if @confirmation_result
+      flash.notice = t('confirmations.user.confirmed')
+      warden.set_user(@confirmation_result)
+      redirect_to :root
+    else
       flash.alert = t('confirmations.user.errors')
       redirect_to :root && return
-    else
-      flash.notice = t('confirmations.user.confirmed')
-      @user.confirm!
-      warden.set_user(@user)
-      redirect_to :root
     end
   end
 

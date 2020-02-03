@@ -37,10 +37,6 @@ class UserRegistrationForm
     end
   end
 
-  def success?
-    self
-  end
-
   private
 
   def persist!

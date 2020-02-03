@@ -7,7 +7,7 @@ class RegistrationsController < ApplicationController
 
   def create
     registrations_result = RegisterUserService.new(signup_result).call
-    if registrations_result.success?
+    if registrations_result
       flash[:notice] = t('registrations.user.success')
       redirect_to user_path(registrations_result.user.id)
     else
