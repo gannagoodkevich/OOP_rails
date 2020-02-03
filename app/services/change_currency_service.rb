@@ -1,4 +1,4 @@
-class ChangeCurrency
+class ChangeCurrencyService
   USD_TO_BYN = 2.113
   EUR_TO_BYN = 2.331
   RUB_TO_BYN = 0.003415

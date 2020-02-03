@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     user = User.find_by(id: params[:id])
     not_existed_error if user.nil?
 
-    money = Money.new(amount: user.card.account_BYN, currency: 'BYN')
-    @change_currency = ChangeCurrency.new(money)
+    money = MoneyValue.new(amount: user.card.account_BYN, currency: 'BYN')
+    @change_currency = ChangeCurrencyService.new(money)
   end
 end

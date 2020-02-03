@@ -6,8 +6,6 @@ class User < ApplicationRecord
   has_one :card
   has_one :address
 
-  before_create :generate_confirmation_token
-
   def password
     @password ||= Password.new(encrypted_password)
   end
@@ -21,18 +19,5 @@ class User < ApplicationRecord
     self.confirmation_token = nil
     self.confirmed_at = Time.now.utc
     save!
-  end
-
-  private
-
-  def generate_confirmation_token
-    loop do
-      token = SecureRandom.urlsafe_base64
-      next if User.where(confirmation_token: token).any?
-
-      self.confirmation_token = token
-      self.confirmation_sent_at = Time.now.utc
-      break
-    end
   end
 end

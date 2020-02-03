@@ -1,4 +1,4 @@
-class Money
+class MoneyValue
   attr_accessor :amount, :currency
 
   def initialize(amount:, currency:)

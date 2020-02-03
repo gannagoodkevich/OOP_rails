@@ -1,4 +1,4 @@
-class Signup
+class UserRegistrationForm
   include Virtus
 
   extend ActiveModel::Naming
@@ -35,6 +35,10 @@ class Signup
     else
       false
     end
+  end
+
+  def success?
+    self
   end
 
   private
